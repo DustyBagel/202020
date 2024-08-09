@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://cibsttdcqnwlu"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_t7m4t"]
+[ext_resource type="LabelSettings" uid="uid://ct56wxeg3wqwi" path="res://text_settings.tres" id="2_6f3if"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g5vhi"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_mcp5c"]
+events = [SubResource("InputEventKey_g5vhi")]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t7m4t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.27451, 0.176471, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.655
+anchor_top = 0.526
+anchor_right = 0.799
+anchor_bottom = 0.61
+offset_left = -0.560059
+offset_top = 0.151978
+offset_right = -0.447998
+offset_bottom = -0.279999
+shortcut = SubResource("Shortcut_mcp5c")
+text = "Stop"
+
+[node name="New" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.655
+anchor_top = 0.403
+anchor_right = 0.799
+anchor_bottom = 0.486
+offset_left = 0.439941
+offset_top = -0.144012
+offset_right = 0.552002
+offset_bottom = 0.071991
+shortcut = SubResource("Shortcut_mcp5c")
+text = "New"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.412
+anchor_top = 0.447
+anchor_right = 0.588
+anchor_bottom = 0.553
+offset_left = 0.375977
+offset_top = 40.344
+offset_right = -0.375977
+offset_bottom = 40.656
+grow_horizontal = 2
+grow_vertical = 2
+text = "00:00:00"
+label_settings = ExtResource("2_6f3if")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.379
+anchor_top = 0.386
+anchor_right = 0.634
+anchor_bottom = 0.5
+offset_left = 0.391998
+offset_top = -0.128006
+offset_right = -0.367981
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Hour" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 23.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ":"
+label_settings = ExtResource("2_6f3if")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minute" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 59.0
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ":"
+label_settings = ExtResource("2_6f3if")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Secound" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 59.0
+
+[node name="Timer" type="Timer" parent="."]
