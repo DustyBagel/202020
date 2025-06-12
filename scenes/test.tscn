@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://c81gk0e8kxg86"]
+
+[ext_resource type="Script" uid="uid://7gcyhblu27qh" path="res://scripts/test.gd" id="1_74lek"]
+[ext_resource type="PackedScene" uid="uid://bscl5qm53kwk8" path="res://scenes/visual_timer_custom.tscn" id="1_errlg"]
+[ext_resource type="LabelSettings" uid="uid://ct56wxeg3wqwi" path="res://other_resource_files/text_settings.tres" id="2_j5jx5"]
+[ext_resource type="Script" uid="uid://c5yw6ics7nxw4" path="res://scripts/time_display.gd" id="3_lpvoh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_74lek")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StartTime" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "00:00:00"
+label_settings = ExtResource("2_j5jx5")
+script = ExtResource("3_lpvoh")
+metadata/_custom_type_script = "uid://c5yw6ics7nxw4"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " : "
+label_settings = ExtResource("2_j5jx5")
+
+[node name="EndTime" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "00:00:00"
+label_settings = ExtResource("2_j5jx5")
+script = ExtResource("3_lpvoh")
+metadata/_custom_type_script = "uid://c5yw6ics7nxw4"
+
+[node name="VisualTimer" parent="VBoxContainer" instance=ExtResource("1_errlg")]
+layout_mode = 2

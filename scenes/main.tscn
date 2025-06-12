@@ -1,144 +1,72 @@
-[gd_scene load_steps=9 format=4 uid="uid://cibsttdcqnwlu"]
+[gd_scene load_steps=4 format=3 uid="uid://cibsttdcqnwlu"]
 
-[ext_resource type="Script" uid="uid://crbfutl23iook" path="res://scripts/main.gd" id="1_t7m4t"]
-[ext_resource type="LabelSettings" uid="uid://ct56wxeg3wqwi" path="res://other_resource_files/text_settings.tres" id="2_6f3if"]
-[ext_resource type="Script" uid="uid://dwc0snu3obgrn" path="res://scripts/count_down_timer.gd" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cnvlxkrfdcyck" path="res://scripts/main.gd" id="1_t7m4t"]
+[ext_resource type="PackedScene" uid="uid://bscl5qm53kwk8" path="res://scenes/visual_timer_custom.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c1tr6jheiudj" path="res://scenes/visual_stop_watch.tscn" id="2_sugp2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
-bg_color = Color(0, 0.517647, 0.305882, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_top = 8.0
-expand_margin_right = 8.0
-expand_margin_bottom = 8.0
-anti_aliasing = false
-
-[sub_resource type="InputEventKey" id="InputEventKey_g5vhi"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_mcp5c"]
-events = [SubResource("InputEventKey_g5vhi")]
-
-[sub_resource type="OggPacketSequence" id="OggPacketSequence_vd4w4"]
-packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAABRKwAAAAAAAAAdwEAAAAAALgB")], [PackedByteArray("A3ZvcmJpczQAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDIwMDcwNCAoUmVkdWNpbmcgRW52aXJvbm1lbnQpAwAAABEAAABBUlRJU1Q9RHVzdHlCYWdlbA4AAABUSVRMRT1CZWVwQmVlcAkAAABEQVRFPTIwMjQB"), PackedByteArray("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")], [PackedByteArray("BEZLjsTP5HItadE3Vsji5rlXxVfPU2v+eTF1Xwuu/yTxz1Tf2LfwKQkL0dAsAD47HAY="), PackedByteArray("/FFLLj32lRTny5nbM8bN6gKNC4oWjtCi6FBkzucFYOZ6iVRGBPFpA76K+ChC2BD4Itn8u4Sw3ZUDZnsFAQ=="), PackedByteArray("+ncFxCRp4+n9+zd44u5XXnkLPpkAfaCHu3eHYUgMPy8AkOQaIDTQv6cBIIQDAEgChiQJMHNz6sAcE8zhYAEKG3AIiQCAq9LLG3o0zI6fB3u3ebFbM7VarVar1WoBAeL0wc+X51trrbUGKJXN9s/zJ5cNgXMAAPp5SQAA4DFOpk+VbQAAgMeYvByn764aAAAAHt//VwIAAADxtAgAAAAQe6YAAACAx6s2AvZxjrOTzrEUBGzbzs6esObup07uOaDY69fYEIC3NAEAgAFwSoAJsBMAPAAAAOAdIF4AAAAVEwA="), PackedByteArray("PngtV+MHuMzHhjb5YBSwEPcLgAYACDkAAEI4AAAhHACA0ADggSRAl25OAeaYYA4Hc6CzAB4hEgAYobzGs7fT7nRzeW0AgKwFAPC0AQAYywAAAACAcrYGAAAAgDzlNOAAAAAA61EBAAAAvvMDAAAA8NEeAAAAoKazPDwmBAMAAADDW7QDAIAEAFh21ZkNAFAQAACsoK4GAEEDDU0AAgVgAuwEGBIA/AVPAwDRAQ=="), PackedByteArray("PngtV+0HGPm4ilrjg8zDYkJYFQAgZPjvbwAQGvCvswMQGoAf1QBJwDCEAqzpnAbM0cAcJOZApyEkAhz+kQsAAGViIgEAAAAAwLIdZQwAAAAAAEZ8wgEAAACARwEAAADgEruMAgAAAHj7BAAAAMDbgAIAAABs2AMA2ACkHePfu2N6XzBouQUAAPCYoCDgoQJMNYAGsBNgGAAAAPCVUQJAheILAAAAjAcA"), PackedByteArray("Pnitp/YNVOb7EpXGB6vAsJgQ1gAAIQcAQAgHACCEAwAQGgBckAR4OqcKzNHBHCQWoLEADiERYHsZAABRAwDAsQoA4LUAAAAAACTtBAAAAAAGWP8EAAAAQEQAAAAAdhYFAAAAat8GAAAAwMsBYACo6dbfC7qgzU1XxgQAAAC4i2kDAADBBADNqe/aAQAKAgDAyYYxBQAeQKEOugQYAWwA4AUA8Al+AAAAECYA"), PackedByteArray("PngtW+MHGPkcaI0PskCFWPoVAICQ4V9/AUAIBwAghAMASAIGkgQ4OieAOQqYg8QcaGwAhESAQgAAQFIGFgAAAADUJgDAFwAAAKAUAAAAgAmSBgAAAIDvHwAAAAC4oQAAAECNCgAAAMAgG4ABVhhERkRGRKo4qahIAABAAADIFDoAAAoCAMC3nlgAgKSARgFTAegAG8AYAACAb4B3AAAAjA4A"), PackedByteArray("PnhNp/YDhHxuGUXpo1ZgSCz9GAAg5AAACOEAAIRwAABCA4AHhAI8nVMH5phgDhIL0FgAj5CA8ZsAAMhaAACXKgCAN0UAAAAAoJwqAgAAAEAekxsAAAAAYlcAAACAxaIAAABAvbMHAAAAqNABD8JR/9aH/Gcn7PDEIQAAAKBwsXYAANgAACqpK7UDABQEAICTJ3qVANhQA10AFIANAMoCAMyr+AYAAEAA"), PackedByteArray("PniNF+cbqMjnhdn4SAsUiwlhNQBAyPD31wAgNOC/kwQgNAAv1QJJwNAkAVakm1OAOYA5SCzAZAFASAQ4/z8NAABb/FIAAAAAAGD/mh8LAAAAAADKE8IFAAAAgG8BAAAAkPycLA4AAADw/TAAAAAAj2kUAAAAwLADAAAA4AsrAApIq/n108e8344cv8kHAACQdFAQsAEULAKQSYAFwAYAiQIALBQ+AAAAMDYA"), PackedByteArray("PnitV+0bhMzHNiot+GAVKBb1C4AKABByAACEcAAAQgNwXi0gNAC4IAkwpZtTA+boYIFPzIHCBhxCIgAQwcuXm++b0+7x+GwBAEQNAACvIwAAAEDSBC4AAAAAAEjycwAAAADQH+ylFwAAAMDZTgAAAABuMgAAAAD8mT0AAACAv0zh2hXGBAAAANhznDYAAJB0ALDxZBQBABQeCICGBgCBAjABeAUABgAAAHwDfA0AAIDQAQ=="), PackedByteArray("PngtV+0HmMjHddQKH4xcJCaEBQAgZPj9FQCEcAAAQgPwz5VAEjAUQgG6dHMSmKODOTwsQGEBPEIkwPb3NgAAZPzEAQAAAMBrXQAAAIArVmcBAAAAKMkBAAAAiNLvAgAAAHDrpQAAAADcJAEAAAB8UQAAAICazgKgAFib3l9/Lo7r0/eejgAAAB4AwMaNSb0AAIUHD5oAZAJgCWADAC8AgA/gKQBAmQA="), PackedByteArray("PnhNW+MHCPm8MCYfjQIWYkJYAQAIOQAAQjgAACEcAIDQAOAFkgBTujkBzDHBHB4WoNAQEjB4HwAAqgAAHoYCAPgAAAAAACiFrQAAAADoO9ohAAAAAG6/UAAAAIAbBwAAAPBzGwAADoCp6XN1F3TT688oJAAAANx3hVYAABBMADBrZqsGAEDhAQB43eLOAOBRQEEDgEACjAA2ACgnAAAAwFdGCQDVwgkAAAAC"), PackedByteArray("PniNW+cbqOZ7CGYJPsoCFiLp1wAAIcPfLwBACAcAIIQDAEgChiYJsJNuTh2YY4I5PMyBzgI4hESA4gYAAFbvUwAAAABwqREAAE8FAAAA+EwaAAAAAEllMlUAAAAA56MCAAAAtUsDAAAAwLQtAAAAgDcHaIAchBGREZERbXLEqQoAAEAwAUD56rE6AQAKDwDAPnfuFACQAA3LAGQKQAfYAIYFAL8hAgAAAOMB"), PackedByteArray("PnhNW+MbiMj3ltH4aBSoFBPCCgBAyAEAEMIBAAgNwK+rAYQGALeAUICjcwowBzAHgQXobACERID50wMAWOUAALpGAAAAAJbzGh4AAAAAAJA/pgAAAAAwmxMOAAAA8P0AAAAAAN9pAQAAAHhuDwAAAMAgGwA4AC+vlXUYLz2ueOeVAAAAcO+nWgAAYAMAsB6UdAIALHiwExWgC4BBgA0APAAAAOADIB4AAICCCQA="), PackedByteArray("PniNV+cHqMjHFbPxURaYFBPCqgAAIcPvnwBACAcAIIQDAEgC6ggFeDqnBszRwRwE5kBjATxCIsDJT1gAAJC1mQAAAAAAjnsBAGxlAAAAqGsDAAAAACwMpwsAAAAgNAEAAAA4pQoAAABQEwMAAACgQgdAAZa2X/65f91eu305xgYAAJAAAE2vP9EGALDgAQDw32hXA8CGBqYEKAA7AIYEAC8KbwAAABg6AA=="), PackedByteArray("PngtV+MbOPnc0lLwwSpQIeoXAA0AEHIAAIRwAABCA/DnKkASsCBJgKNzEpijgDkILEBjAUCIAKBQXuP522l3urm8bQCA3gcAwNMuAAAAAPt9hAEAAACgLucDAAAAIIN+GAAAAIDvnwAAAACUCgAAAFBDEwAAAIAvrFQ/UwoGAAAA9r6mFQAAJB0ALEtlnAEALHggABpV0BWACbADAJICDYDfCk8FAAM="), PackedByteArray("PngtF+MbqMznVdQGH6wClmJCWAAAQoa/XwIAQjgAACEcAIDQAOACoQB76eYEMMcEcxBYgMkGHEIiwOD/LQAA2H6eDgAAAABPCwDAlwAAAAAAkoVCAAAAAHQw7Q4AAAAAURUAAADArQIAAADwzA4AAACAlykAIACpj7vPxWk6Dvf3WwAAAI8OAJa9VjEAAAseAIAHa0Y+AD4olgDIBMAE2AEAXgAAAPAO8AMAAMCwAQ=="), PackedByteArray("PnhNp/EDhHxuGU3po1WgWEwIawCAkAMAIIQDABDCAQAkAUOSBOjSzakDczQwB4E5MFkAj5AIsL0UAIA1AQDA01QAAK8JAAAAlyQAAACA3GY/TQEAAAC8fQYAAADgJr8AAAAATNkBAAAA1HQWAAyAWtCpe0EXTHVylVIAAABA5/O0AACAAABYZgo4AQAseAAAHuwYiwDwAAqaAAQSoAHsABgDAH+FTwAAABIdAA=="), PackedByteArray("PniNW+cbqOZ7DGbho8zFYulXAABCht+/AABCOAAAoQH4U1VAaADwQBJgSjenAHN0MIcLLEChISQCFE4AAECeRJkBAAAA4GYPAAAAwP4jlgsAAAAAAMrmJgAAAADUOZkOAAAAsBoFAAAA4HsQAAAAgJ/ZAgACrDCIjIiMiN/6aw4VCQAA7GACgOaZe7QDACz4hE+AhgYAmQLQAXYAQFkAAACAr4wSAJ4pvgEAABgmAA=="), PackedByteArray("PniNF+MbqObzijn4qBUoFhPCGgAg5AAACOEAAIRwAABJwIIIBdhJN6cGzNHBHA4WoLABh5CA8TMEAND7AADo2gQAiAoAAADqpgEAAADIR4Y3AAAAALx7VQAAAAAeMwEAAAB8EQAAAAAvBwADKK/w8Uq8XDu+/XQIAAAASNpeKwAA7GQCADt01QEAsEACAJDdKuoA2AnLAAQCoAPsAIBEAQAA4BPgAwAAgAQ="), PackedByteArray("Pnj1V+8bqObzil34lAWGxYSwGgAgZPj+MgAQwgEACA3Ar6oCQgOAC5IAazongTkmmMPBHChsAIREgPPfbwAA2NkmAwAAAACsKgAAAMBySnEBAAAAAEDSkwUAAAAAGzQdAAAAgNsXFAAAAOCxAAAAAPy3HQAAAACDbABAQFrO24/X7XWbZu4sHwAAQAIARN3T6QQAWCBhAyhUgKkOUAB2AAwDAADgF8DXAAAADA8A"), PackedByteArray("PnhNV+MbmMznFWPw0SpUJO4XABUAIOQAAAjhAACEcAAAScBAkgBP51SAOSaYw8ECdBbAI0QCAB28fNn7uXfanY7ftgAA1gQAAA/DAACeEgAAAEwDAAAAwCZWPwAAAAB4uqcAAAAAj3kAAAAAmPYAAAAAFTo1FjSaAAAAQKhXXwMAAB4AQG/jY60AABMJAGBfRzcSADsooFEHXQFYAOwAAC8AgAqFpwAAYwI="), PackedByteArray("NngFYJY6rnT//vV/x90Pr3+VoJIP9nh9+/Y4jsTxJQ0ApLkaIDSw/70LQAgHACA0AHhAKMBJN6cBc4zAHC4xB0YsgENIBIAU3RNnEPeLtPMzP31uVP3kZDKZTCaTyYgAwvDAodfWvQMAeF+sT2/7si8jEgAA6O8AAAAAAPtRAQAAANDf+a2Z6gAAANDfPxwCAAAAHp5s6woAAED1u2kDAAAAePjPXgGUXr169foKOvfORDKWZVnprJb799wtDgAfGLsAZAJgAuwAWIYH4EuFEwEAADR0AA=="), PackedByteArray("DEZL9j38jyb60SGkPO4yF0BDzUA8YM10WwA6qNFq9vD211ZYjgLfBaNVAd6a4UYE5iYe"), PackedByteArray("FEZLb80Y0xD12FOobV1gmi2TEAJzz+anBXnR4ZlF6amKWgzoVqGlBU41XJHjRf7yAA=="), PackedByteArray("XEb120/6Cf5dg74n4cprgelaAA3w8vhJavCUmByy8/D9rdRrGuRpPhi/x8BccUbbEJ51/wdeHwA="), PackedByteArray("5AHF1Vj+tj5h2IeIdH4fPX5mTK8vkS0zHpE9xhy+xJKl+R9rtvT9D7lQ1qR8OAA="), PackedByteArray("Cg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Bg=="), PackedByteArray("AA=="), PackedByteArray("AA=="), PackedByteArray("AA=="), PackedByteArray("AA=="), PackedByteArray("XA6Ri8bncZAy7ryvEtKxQ6s569z64mW2u0UwLRaEz//3WhtKa//3/9aEx03lzUNqL8J/"), PackedByteArray("FE5L9x3X29N1YSyEMG7uLgANRQtHiAH5NGJ27n4VSTvKoc0PKvdijE8NcHuqiR3Kh6g/48S3aGEH")], [PackedByteArray("+mcFaJa01fD+/Rs88YlfeeUt6IXgAz3cvTsehsTw8wIAaa4B6YH+PQ0AoQEM/+5sAZKAgSQB9nMAc+rAHJvBAgdzYJANQIIAgDOn51cY7+jV42DvJi96a6ZWq9VqtYZaQIA4ffDz+XxrrbXWBJTK9vbPR8ecNwTOAYBSKpvdfDJpuH2dawgcABBjnMzcn59vAACAx5j64LbWBAAAh3hwuGoCAADg8efn1gAAAPB4vqkJAAAAHi8OagAAAODx+EADQChTU2hCgFkmT42NNhQKgFMCTADQBIBhAQAAfAAA5okAAAASEwA="), PackedByteArray("PngtV+0bOPnc0gYftALG4n4B0AAAIQcAQAgHACCEAwAQGgA8IBSgSzenAHNMMIeDBegsgEdIBAAilNd4ejvtTjeX1wYAyFoAAE8LAECWAQAAAADlqAQAAABAOqfmAAAAAKoKAAAA8NgBAAAASNoDAAAAlBelU6VgAAAAIIkr7QAA8OgAYNlrpQEAmDwAAKJJuxoANmgCsAmABiABwAMA4EUhAgAAgGED"), PackedByteArray("PnitW+kbmMznVVQKH7QCRWJCWBUAIGT4728AEMIBAAgNwJ+rAEnAMIQCrKWbUwPmaGAOB3MACwBCAgZ/5AIAQGl1CQAAAABPuwIAAACMbhwHAAAAAFwAAAAA9Bd7MwUAAADw9h4AAACAx/wAAAAA/LYDAAAAIMMWAAQg7bj+e3dM7ztu7LcAAAAEAMCyUnsXAIDJAwENABoNYAQgAQYAwG9FPAAAAAk="), PackedByteArray("Pnith/YDRObzEpUWSh+sAsMCQlgDAIQcAAAhHACAEA4AQGgAcEESYEfnJDBHB3O4xAI0NuAQIgG2lwEAEDUAANzsAwDgNQAAAACApDcOAAAAAOn0gwAAAAC0IAAAAADf+RQAAAAoFwAAAADPBQAwAGrBSd0FXdBq5aGYAAAAgPrZ2gAAQAAANH/7VDsAwOQBAHjwdxIfAA+gUAcvATrATgBIAgAAAO8AngYAzgQA"), PackedByteArray("PniNF+cbmOZzDGbhIy1gLJZ+BQAgZPj9JwAQwgEACOEAAJKAoRAKcHROAHMAc5BYgMYCgJAIUAgAAJDxBwcAAAAAXZsAAK8JAAAA3hQAAACAGdo9AAAAAN5eAwAAAGCXqQAAAEDtWQEAAAD41wIgwAqDKKOIjIj0PFxFRQIAABsTANgnyzoAACYPAMCDX5JEAHioAFsADALsBIDyAAD+Cl8AAACQ6AA="), PackedByteArray("PnhNW+MbiMj3hVH4qBUwFhPCGgAg5AAACOEAAIQG4H9VAaEBwANJgKdz6sAcE8xBYg5MFsAjJAKM3wQAQNYCALjUJgAAAOAVUVwAAAAAAFA2NQIAAADAmv3BBQAAALC/UgAAAAA3FAAAAOCCHQAAAAD38gDAAMorPIvE4br6mCcOAQAAABvM0Q4AAJIJACpXj9IBADB5IGmg0cBrAAuAnQBjAOCZ4gcAAADhAQ=="), PackedByteArray("PniNV+cbqObzitmCj7SApYAQVgMAhAx/fw0AQjgAAKEBmKsFkoChSQIcnVOAOSaYg8QCTDbgEBIBzv9PAwDAFr8VAAAAADwMAwAAAPgLIR8AAAAA30gBAAAAIINTdwAAAICn9xQAAABgMRQAAADgjh0AAACAb0oCgIC0mvefPubXbe0Ds3wAAAAJADD7wfzEAACTBzsBClWwJcAE2AkAHgAAAPAJ8A4AAIAxAQ=="), PackedByteArray("PngtN+MbOPm4RK3wwShgIeoX8KgAACEHAEAIBwAgNACfqgWEBgAXCAXYSzenBszRwRwkFqDQEBIBgA5evuy93Zx2j8dnCwAgagAA+FIPAAAA0G7gcAEAAAAAQLKYBwAAAIAeYHgXAAAAgCdHBQAAAOAxjQIAAAB+ZgXIOjplAgAAAPx/uDYAAHh0AHDytVocAMDkwQZLAGwCYAlgJwAkFgAAAOArogCAv/ALAAAAoQM="), PackedByteArray("PngtF+MbKPm8ilrhg1HAQkwICwBAyPD7JwAQwgEACOEAAJKAoRAK0KWbk8AcHczhYQ4UFsAjJAJsf28DAEBqph0AAAAAfBkAAHgqAgAAoDblBwAAAJAdOgMAAADA3iIAAAAAb2kBAAAAfG0AAAAAlBcANABr+nT3OR3T+WudjgAAAAQdAJzcJ7wAAJNPAAD7GjhTAkBAE4BGA2gAOwGGAQAVig8AAACMCQA="), PackedByteArray("Pngtp/EDROZzG7URSh+MXCkihBUAgJADACA04L+TACCEAwAQGgC8JJIAU7o5AcxRwBweNtBZABAiAQbvDQBgrAUAAGBfqigAAADgAwAAAADAPsUAAAAAoCPtAwAAAADf/wMAAADULhUAAACAj/YAAAAAZNgCoAFg3al76i7ohqieUUgAAAB4+Q/tAAAgACYSAMDrZr0BwAdAQQOATQJ0gJ0AAPANAADwCTwdAMQGAA=="), PackedByteArray("PniNp/MLROSzBbMpfZQFKhKD9GsAgJDh7xcAIIQDABDCAQAkAUMjFGAn3Zw6MMcEc3iYA50NOIREgOIGAAA2268DAAAAwKUcAMDzAgAAAPzLDAAAAAC5yy6jAAAAAHpUAAAAgBsHAAAAIGcPAAAA4D0AFEAOIiMiIyIjJgyIUxUAAMAGAFA217QBAEwkAIB9lxsFAB4sA9AIgEGAnQDLAAAA+AY4BwAAAKMD"), PackedByteArray("PnhNW+MHCPncMhofjULDYkJYAQAIOQAAQjgAAKEBuFUDJAFDkgRY0zkFmKOBOTwsQGMBQEgEmD89AIA1AQCAGgEAAABInjgcAAAAAPxOKgAAAAB2nGwdAAAA4O0dAAAAADcpAAAAAHXbBgAAAIB/LQBoALw8XlmH8bLoB++8EgAAADZ4VgsAAEgmABAGnQAAEwkSoFEBXgMoADsBoBwAAPMqTgAAABAmAA=="), PackedByteArray("PniNV+cHKPm4Yo7goyw0LCKEVQEAQobfvwAAQjgAAKEBeK0GEBoAvEIS4OmcGjBHB3P4wAI0FsAjJAKc/LgFAAA5Uw8AAAAA4FgOAAAAUJnyOAAAAAAAoDRpAQAAAIB5hrcAAAAAaAkBAAAAeEsrAAAAQDkAAAAA9UAeADRgafv85/51e+121xgbAABAMgFAOjynDQBgImEnQKGBLQEmwE4A8AAAWChEAAAAYHQA"), PackedByteArray("PngtN+MbuMzHNmqND1YeFvULODQAQMgBABAa8K+zARDCAQAkAQsiFODonATmAOYgMAcaG3AIiQBAh/IaT9+Pu9PN5RENAND7AAAAsGxHjAAAAIC3BQAAAJRmAQAAAJhCrQAAAAC8vQAAAADgMV0AAACAumULAAAA4PNJntEgGAAAAGi4tFYAAPgAmEgAACfXSaQAwIYCXgBMgA1gAAAAwDdAPAAAAMID"), PackedByteArray("PngtF+MbKPm8ilrjg1WgQkwICwBAyPD3SwBACAcAIIQDABAaAFyQBNjTORVgjgnmILAAk4YQCTD4fwsAAHbT6wAAAADwYQYA8AUAAAAAkOTlAwAAAIAdq0cAAAAAJosCAAAAlFUAAAAAsnYAADSA1G36XJymY7WzaxYAAICgA4B9G5UWAMBEAgD41pckAGAHQKMGtgbQADYASAIAAADwFVEAwAfwNABQJgA="), PackedByteArray("PnhNp/EDROZzyxhKH61Cw2Lp1wAAIQcAQAgHACCEAwBIAoYkCbAi3ZwGzDHBHAQWoLAAHiERYLsrAABrAgCAp6kAAF6LAAAA8McIAAAAIM/ZWQsAAADg5wMKAAAA4FYBAAAA+GUPAAAAUF4AA+ToMO4k+ih63berlAIAAAC0LdIAAICNDgCWhfYOAICJBADwYI9ESgB80EDBIgCbBOgAGwCUBwBQLXwBAACA0AE="), PackedByteArray("PniNp/EDhHwOwWyh9FErNCSWfgUAIGT4+PIAIIQDABAagK9VAaEBwANCAaZ0c6rAHB0sIDAHCgsAQiJA4QQAAGRfvhkAAAAAbvYAAAAAjAIuFwAAAAAAlNM1AAAAAHTF+TYHAAAAeLIvAAAAADc5AQAAALwUAAAAgAxbgASs8DgyIgziz87PoSIBAAAJADAm3KwJADCR8KABQKMCoAPwCgAMywbgN/wAAADQMQE="), PackedByteArray("Pnj1W+cHiOfzwhx8ygLGYunHAAAhBwBACAcAIIQDAEgChiEUoEs3J4A5OpiDwAIUNuAQEgHGnxIAQO8DAKBrEwBgUAEAAACLAAAAAMg54RcAAAAAt84FAAAA4G0QAAAAgJ9bAAAAALwH4AWmBX/ruv6fbd/46RAAAACYQm61AgCABADIXN1BBwDAZAMAYP/Qpg6AT2gCsGkABWADAA8AAAD4AHgHAAAgsQE="), PackedByteArray("PniNV+cHqObjiln4qBUwFhPCagCAkOH7ywBACAcAIDQA/1wVEBoAXJAEWEs3J4E5JpjDwRzoLAAIiQDnv98AALDNEwMAAAAArNoEAAAAXB2IXAAAAAAAkLQTAAAAAPQScTMAAAAAb68BAAAA8JgJAAAAwEF7AAAAAP61AGAAaTl//HjdXrfpBs/yAQAAHhMARKNNOgAAJhtICihYAKCRAAuADWBIAPCi8A0AAMDQAQ=="), PackedByteArray("PnhNV+0HmMjHFaMFH41sLOoXABUAIOQAAAjhAACEcAAAScBAhAI8nVMB5phggYM50FkAj5AIACzg5cvu59757nT8tgUAsCYAAHiYCADgKQEAAMBJAQAAAEjD6iUAAAAA66gAAACAnwoAAACA5/YAAAAAdS+PWjONJgAAABAudaUBAACCCQB6972sHQBgsgEAuHqz3gbAhjqgAmAC8AoADAMAfis+AAAASEwA"), PackedByteArray("NngFYJY69nT//vXvjrsfXn8WbDn6YI/Xt2+P40gcX9IAgNChpwCQHti/9wIQwgEACA0AHkgCnHRzGjBHAwscLEBjAw4hEgCS4IEzSNcWaednfvrcqPrJyWQymUwmkxEBiJmerfdJ6D0AAPC+WJ9+er3IaEQAAICPAwAAAABwF0VLAQAAqPXncMvXXQEAAKq//xACAAAAHs42dwUAAKD6JI0AAAAAPm8FAHr16tULDXDsJzLZYFmWZaWz3n08S2KE1dlBA42x1QI0agANgFcAALwAAADgHcDTAcDpAA=="), PackedByteArray("DEqLzx59qUQ/MhDjWh9YtFnNkOIBL8x5wAY9mtASO3g8aBVqDvADYWcC8LcZTBxQxQM="), PackedByteArray("FE5LL80Y19jrZl+94oYLkChbJoFg3LP5aYNcyhHMMBRUYKIDAuf2Qs0B3jZchnwZfJMP"), PackedByteArray("FFKL9j28auzXzFq9Vl6LZmx5S/eBnuB1ks+K+O3B/xjI7hyR6yZ12x52v4AMw3nLD9tDaChkPgA="), PackedByteArray("XCK1+WeiHnfniOn76sOdGeuvZ9f8hU00Hq5wrh/Tero1/o6Wr/OvFMEzBlg93LPG9QA="), PackedByteArray("Cg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg=="), PackedByteArray("Dg==")]])
-granule_positions = PackedInt64Array(0, 0, 33152, 99233)
-sampling_rate = 44100.0
-
-[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_84aex"]
-packet_sequence = SubResource("OggPacketSequence_vd4w4")
-
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_t7m4t")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.27451, 0.176471, 1)
+script = ExtResource("1_t7m4t")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VisualStopWatch" parent="." instance=ExtResource("2_sugp2")]
+layout_mode = 1
+anchor_left = 0.043
+anchor_top = 0.077
+anchor_right = 0.307
+anchor_bottom = 0.184
+offset_left = 0.463997
+offset_top = 0.103996
+offset_right = 0.335999
+offset_bottom = -0.23201
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(777, 278)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -257.0
-offset_top = -88.0
-offset_right = 257.0
-offset_bottom = 88.0
+offset_left = -388.5
+offset_top = -139.0
+offset_right = 388.5
+offset_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
-layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-alignment = 1
 
-[node name="TimeText" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="AddTimer" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.33
-theme_override_font_sizes/font_size = 49
-text = "00:00:00"
-placeholder_text = "Format: HH:MM:SS"
-alignment = 1
-max_length = 8
-emoji_menu_enabled = false
+text = "Add Timer"
 
-[node name="New" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Timers" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Reset"
+columns = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="VisualTimer" parent="VBoxContainer/ScrollContainer/Timers" instance=ExtResource("2_0wfyh")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.33
 
-[node name="TimeDisplay" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/CenterContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "00:00:00"
-label_settings = ExtResource("2_6f3if")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Paused" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
+[node name="VisualTimer2" parent="VBoxContainer/ScrollContainer/Timers" instance=ExtResource("2_0wfyh")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-shortcut = SubResource("Shortcut_mcp5c")
-text = "Start"
-
-[node name="ErrorLine" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[color=dark_green]00:00:00  is valid."
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Audio" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamOggVorbis_84aex")
-
-[node name="NegativeTimer" type="Timer" parent="."]
-script = ExtResource("3_sugp2")
-metadata/_custom_type_script = "uid://dwc0snu3obgrn"

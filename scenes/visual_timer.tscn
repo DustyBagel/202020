@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8g6lpxh130tq"]
+
+[ext_resource type="Script" uid="uid://b8q7utpbjt3tk" path="res://scripts/visual_timer.gd" id="1_asw63"]
+[ext_resource type="Script" uid="uid://cy7py075ppqe2" path="res://scripts/countdown_timer.gd" id="2_asw63"]
+[ext_resource type="LabelSettings" uid="uid://ct56wxeg3wqwi" path="res://other_resource_files/text_settings.tres" id="2_ejbq2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asw63"]
+bg_color = Color(1.92523e-07, 0.573345, 0.322643, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="InputEventKey" id="InputEventKey_g5vhi"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_x045f"]
+events = [SubResource("InputEventKey_g5vhi")]
+
+[node name="VisualTimer" type="Panel"]
+custom_minimum_size = Vector2(312, 208)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -104.0
+offset_right = 156.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_asw63")
+script = ExtResource("1_asw63")
+
+[node name="CountdownTimer" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_asw63")
+metadata/_custom_type_script = "uid://cy7py075ppqe2"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TimeText" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.33
+theme_override_font_sizes/font_size = 49
+text = "00:00:00"
+placeholder_text = "Format: HH:MM:SS"
+alignment = 1
+max_length = 8
+emoji_menu_enabled = false
+
+[node name="Reset" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+text = "Reset"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.33
+
+[node name="TimeDisplay" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00:00"
+label_settings = ExtResource("2_ejbq2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut = SubResource("Shortcut_x045f")
+text = "Start"
+
+[node name="ErrorLine" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[color=yellow]Please set a time."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

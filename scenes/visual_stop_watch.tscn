@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1tr6jheiudj"]
+
+[ext_resource type="LabelSettings" uid="uid://ct56wxeg3wqwi" path="res://other_resource_files/text_settings.tres" id="1_6kv1y"]
+[ext_resource type="Script" uid="uid://bqclv656ordyg" path="res://scripts/visual_stop_watch.gd" id="1_xwdxa"]
+[ext_resource type="Script" uid="uid://dg223twpfgdjp" path="res://scripts/stop_watch_2.gd" id="2_jfrme"]
+[ext_resource type="Script" uid="uid://c5yw6ics7nxw4" path="res://scripts/time_display.gd" id="4_h6yot"]
+
+[node name="VisualStopWatch" type="HBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.264
+anchor_bottom = 0.106
+offset_right = -0.127991
+offset_bottom = 0.311996
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwdxa")
+
+[node name="StopWatch2" type="Node" parent="."]
+script = ExtResource("2_jfrme")
+metadata/_custom_type_script = "uid://dg223twpfgdjp"
+
+[node name="TimeDisplay" type="Label" parent="."]
+layout_mode = 2
+text = "00:00:00"
+label_settings = ExtResource("1_6kv1y")
+script = ExtResource("4_h6yot")
+metadata/_custom_type_script = "uid://c5yw6ics7nxw4"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Reset"
+
+[node name="Start" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Start"

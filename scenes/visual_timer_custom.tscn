@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bscl5qm53kwk8"]
+
+[ext_resource type="PackedScene" uid="uid://b8g6lpxh130tq" path="res://scenes/visual_timer.tscn" id="1_jihfi"]
+[ext_resource type="Script" uid="uid://dhj2bqwgq4v8p" path="res://scripts/visual_timer_custom.gd" id="2_r20ic"]
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_jihfi"]
+
+[node name="VisualTimer" instance=ExtResource("1_jihfi")]
+custom_minimum_size = Vector2(386, 243)
+offset_left = -193.0
+offset_top = -121.5
+offset_right = 193.0
+offset_bottom = 121.5
+script = ExtResource("2_r20ic")
+
+[node name="Audio" type="AudioStreamPlayer" parent="." index="1"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamOggVorbis_jihfi")
+parameters/looping = true
+
+[node name="MarginContainer" parent="." index="2"]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 386.0
+offset_bottom = 243.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="VBoxContainer#HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer#HBoxContainer3" index="0"]
+layout_mode = 2
+text = "TimeOut Action:"
+
+[node name="Options" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer#HBoxContainer3" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "ShutDown"
+popup/item_1/id = 1
+
+[node name="Delete" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer#HBoxContainer3" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delete Timer"
